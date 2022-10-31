@@ -1,0 +1,61 @@
+﻿@using WebShop.DataTransferObject;
+@model FullProductDTO;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.Id product</h1>
+<br>
+
+<table class="table table-stripet">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShopName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ShopName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Address)
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br>
+
+<button class="btn btn-outline-dark col-md-1"
+        onclick="openModal({ url: '/Product/Edit', data: '@Model.Id'})"
+        data-toggle="ajax-modal"
+        data-target="Modal">
+    Edit
+</button>
+<button class="btn btn-outline-danger col-md-1">
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "text-decoration-none text-reset"})
+</button>

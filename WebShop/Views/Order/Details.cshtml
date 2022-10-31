@@ -1,0 +1,70 @@
+﻿@using WebShop.DataTransferObject;
+@using Repository.Data;
+@model FullOrderDTO;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.Id order</h1>
+<br>
+<div class="d-flex flex-row">
+    <div class="d-flex flex-column col-md-7">
+        <div class="d-flex flex-row">
+            <h3>@Html.DisplayNameFor(model => model.CostumerName):</h3>
+            <h4 class="ps-5">@Html.DisplayFor(model => model.CostumerName)</h4>
+        </div>
+        <div class="d-flex flex-row">
+            <h3>@Html.DisplayNameFor(model => model.CostumerAddress):</h3>
+            <h4 class="ps-5">@Html.DisplayFor(model => model.CostumerAddress)</h4>
+        </div>
+        <div class="d-flex flex-row">
+            <h3>@Html.DisplayNameFor(model => model.OrderStatus):</h3>
+            @if (Model.OrderStatus.Equals(OrderStatusEnum.Active))
+            {
+                <button class="btn btn-outline-warning ms-5">
+                    @Html.ActionLink(Model.OrderStatus.ToString(), "ChangeStatus", new { id = Model.Id }, new { @class = "text-decoration-none text-reset"})
+                </button>
+            }
+            else
+            {
+                <button class="btn btn-outline-success ms-5">
+                    @Html.ActionLink(Model.OrderStatus.ToString(), "ChangeStatus", new { id = Model.Id }, new { @class = "text-decoration-none text-reset"})
+                </button>
+            }           
+        </div> 
+    </div>
+    <div class="d-flex flex-column col-md-5">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <h5>@Html.DisplayNameFor(model => model.Products[0].Name)</h5>
+                    </th>
+                    <th>
+                        <h5>@Html.DisplayNameFor(model => model.Products[0].Price)</h5>
+                    </th>
+                    <th>
+                        <h5>@Html.DisplayNameFor(model => model.Products[0].Color)</h5>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model.Products)
+                {
+                    <tr>
+                        <td>
+                            <h6>@product.Name</h6>
+                        </td>
+                        <td>
+                            <h6>@product.Price</h6>
+                        </td>
+                        <td>
+                            <h6>@product.Color</h6>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

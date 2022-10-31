@@ -1,0 +1,44 @@
+﻿@using WebShop.DataTransferObject;
+@model List<OrderDTO>
+    
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>All Orders</h1>
+<br>
+<table class="table table-stripet">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].CustomerAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].OrderStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => order.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => order.CustomerAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => order.OrderStatus)
+                </td>
+                <td class="d-flex justify-content-end">
+                    <button class="btn btn-outline-primary">@Html.ActionLink("Details", "Details", new { id = order.Id }, new { @class = "text-decoration-none text-reset"})</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
